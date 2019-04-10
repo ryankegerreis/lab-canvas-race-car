@@ -2,6 +2,7 @@ window.onload = function() {
   document.getElementById("start-button").onclick = function() {
     drawBoard();
     drawCar();
+    updateCanvas();
   };
 
   function startGame() {
@@ -12,7 +13,7 @@ window.onload = function() {
 
 
 function drawBoard() {
-  let canvas = document.querySelector('canvas');
+let canvas = document.querySelector('canvas');
 let w = 400;
 let h = 511;
 let ctx=canvas.getContext('2d');
@@ -46,15 +47,36 @@ let ctx=canvas.getContext('2d');
 let carImage = new Image()
 carImage.src="./images/car.png"
 
+let car = {
+  x:135,
+  y:120,
+}
 
 function drawCar(){
   let canvas = document.querySelector('canvas');
   let ctx=canvas.getContext('2d');
-  // let car = {
-  //   x:20,
-  //   y:20,
-  //   // accident: 40
-  // }
-  ctx.drawImage(carImage, 135, 120,25,25)
+  ctx.drawImage(carImage, car.x, car.y,25,25)
 }
 
+document.onkeydown = function(e) {
+  console.log(e.keyCode)
+  switch (e.keyCode) {
+    case 38: car.y-=5;  break;
+    case 40: car.y+=5;  break;
+    case 37: car.x-=5;  break;
+    case 39: car.x+=5;  break;
+  }
+}
+
+function updateCanvas(){  
+  let canvas = document.querySelector('canvas');
+  let ctx=canvas.getContext('2d');
+  let w = 400;
+  let h = 511;
+
+  ctx.clearRect(0,0,w,h) 
+  drawBoard()
+  drawCar()
+
+  window.requestAnimationFrame(updateCanvas)
+ }
