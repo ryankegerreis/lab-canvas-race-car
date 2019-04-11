@@ -53,19 +53,8 @@ let ctx=canvas.getContext('2d');
   ctx.fillRect(280, 0, 5, h);
 }
 
-
-var backgroundImage = {
-  img: drawBoard(),
-  x: 0,
-  speed: -1,
-
-  move: function() {
-    this.x += this.speed;
-    this.x %= canvas.width;
-  },
-
 //Car
-function drawCar(){
+function drawCar() {
   let canvas = document.querySelector('canvas');
   let ctx=canvas.getContext('2d');
   ctx.drawImage(carImage, car.x, car.y,25,25)
@@ -89,69 +78,30 @@ document.onkeydown = function(e) {
 }
 
 //Obstacle Creator
-class Obstacle {
+// class Obstacle {
   
-  constructor(width, height, color, x, y) {
-    this.width = width;
-    this.height = height;
-    this.color = color;
-    this.x = x;
-    this.y = y;
-    // this.frames=frames;
-  }
+//   constructor(width, height, color, x, y) {
+//     this.width = width;
+//     this.height = height;
+//     this.color = color;
+//     this.x = x;
+//     this.y = y;
+//     // this.frames=frames;
+//   }
 
-}
-
-// let f = 0
+// }
 
 
 function updateCanvas(){  
   let canvas = document.querySelector('canvas');
   let ctx=canvas.getContext('2d');
-  let w = 400;
-  let h = 511;
+
 
   // ctx.clearRect(0,0,w,h) 
   drawBoard()
   drawCar()
-  updateObstacles()
-  // backgroundImage.move()
-  // console.log("It's updating")
   window.requestAnimationFrame(updateCanvas)
  }
 
 //Obstacles
-function updateObstacles() {
-//   let canvas = document.querySelector('canvas');
-//   let ctx=canvas.getContext('2d');
-//   // for (i = 0; i < myObstacles.length; i++) {
-//   //   myObstacles[i].x += -1;
-//   //   myObstacles[i].updateCanvas();
-//   // }
-//   // console.log("obstacles function has been called")
-  
-//   frames += 1;
 
-//   if (frames % 120 === 0) {
-//     console.log("the conditional happened")
-//     var x = drawBoard.w;
-//     var minHeight = 20;
-//     var maxHeight = 100;
-//     var height = Math.floor(
-//       Math.random() * (maxHeight - minHeight + 1) + minHeight
-//     );
-//     var minGap = 50;
-//     var maxGap = 200;
-//     var gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
-//     myObstacles.push(new Obstacle(10, height, "red", 20, 0));
-//     console.log(myObstacles)
-//       // ctx.fillStyle='blue'
-//       // ctx.fillRect(150,0,100,100)
-
-//   }
-
-//   for (i = 0; i < myObstacles.length; i++) {
-//     myObstacles[i].x += -1;
-//     // updateCanvas();
-//   }
-}
